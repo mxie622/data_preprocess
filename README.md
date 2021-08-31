@@ -8,5 +8,5 @@ Preprocess picture data
 # Things to note
 1. Input files saved in the ‘input’ folder
 2. Output files generated in the ‘output’ folder
-3. Default resize = 256 x 256. 
+3. Default resize = 256 x 256; Change the parameters 'image_dim_x' and 'image_dim_y' in run.pipeline.sh
 4. If a image file already existed, the one generated newly will cover it
