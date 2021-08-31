@@ -18,12 +18,18 @@ import os
 import skimage.io
 from skimage.transform import resize
 
+class process(object):
+    def __init__(self, config):
+        self.image_dim_x = config.image_dim_x
+        self.image_dim_y = config.image_dim_y
+
+
 def img2resize(imgFile, outFile, ypixels_resize, xpixels_resize):
     img = skimage.io.imread(imgFile, as_gray=False)
     img_resized = resize(img, (ypixels_resize, xpixels_resize), anti_aliasing=True)
     skimage.io.imsave(outFile, img_resized)
 
-def process_image(settings, imgFile, outDir):
+def process_resize(settings, imgFile, outDir):
 
     # Create output directory
     if not os.path.exists(outDir):
@@ -38,23 +44,22 @@ def process_image(settings, imgFile, outDir):
     if "img2resize" in settings.keys():
         print("Resizing image...")
         img2resize(imgFile, os.path.join(outDir, nametag + "_resized.jpg"),
-                   ypixels_resize=settings["img2resize"]["ypixels"],
-                   xpixels_resize=settings["img2resize"]["xpixels"])
+                ypixels_resize=settings["img2resize"]["ypixels"],
+                xpixels_resize=settings["img2resize"]["xpixels"])
 
 
-settings = {
-    "img2resize": {"ypixels": 256,
-                   "xpixels": 256},
-}
+# settings = {
+#     "img2resize": {"ypixels": 256,
+#                    "xpixels": 256},
+# }
 
-images = os.listdir(os.getcwd() + '/input') # images list of current path
-print(images)
-for i in images:
- 
-# Run our tools
-    process_image(settings=settings,
-                  imgFile= os.path.join(os.getcwd() + '/input/' + i),
-                  outDir=os.path.join(os.getcwd(), "output"))
+# images = os.listdir(os.getcwd() + '/input') # images list of current path
+# print(images)
+# for i in images:
+#     process_image(settings=settings,
+#                   imgFile= os.path.join(os.getcwd() + '/input/' + i),
+#                   outDir=os.path.join(os.getcwd(), "output"))
+
 # process_image(settings=settings,
 #               imgFile=os.path.join(os.getcwd(), ,"burger_test.jpeg"),
 #               outDir=os.path.join(os.getcwd(), "output"))
