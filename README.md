@@ -1,5 +1,5 @@
 # data_preprocess function
-Preprocess picture data
+Preprocess image data
 
 # Usage:
 1. git clone 
